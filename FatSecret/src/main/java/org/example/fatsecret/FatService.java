@@ -12,4 +12,13 @@ public class FatService {
     public User createUser(User user) {
         return repo.save(user);
     }
+    
+    public User getUserById(Long id) {
+        User user = repo.findById(id).orElse(null);
+        if (user == null) {
+            throw new RuntimeException("User with id " + id + " not found");
+        }
+
+        return user;
+    }
 }

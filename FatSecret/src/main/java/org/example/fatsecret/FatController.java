@@ -15,4 +15,10 @@ public class FatController {
     public User create(@RequestBody User body) {
         return service.createUser(body);
     }
+
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return service.getUserById(id);
+
+    }
 }
