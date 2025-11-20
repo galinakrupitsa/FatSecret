@@ -1,4 +1,4 @@
-package org.example.fatsecret;
+package org.example.fatsecret.Entity;
 
 import jakarta.persistence.*;
 

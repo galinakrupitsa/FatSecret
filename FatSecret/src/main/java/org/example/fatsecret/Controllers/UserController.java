@@ -1,13 +1,15 @@
-package org.example.fatsecret;
+package org.example.fatsecret.Controllers;
 
+import org.example.fatsecret.Service.UserService;
+import org.example.fatsecret.Entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/user")
-public class FatController {
-    private final FatService service;
+public class UserController {
+    private final UserService service;
 
-    public FatController(FatService service) {
+    public UserController(UserService service) {
         this.service = service;
     }
 
