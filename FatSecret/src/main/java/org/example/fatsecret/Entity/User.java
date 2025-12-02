@@ -11,6 +11,10 @@ public class User {
     private String username;
     private int age;
     private int weight;
+    @Column(nullable = true)
+    private int height;
+    @Column(nullable = true)
+    private Double activity;
 
     public void setId(Long id) {
         this.id = id;
@@ -25,7 +29,12 @@ public class User {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    public void setActivity(double activity) {
+        this.activity = activity;
+    }
     public Long getId() {
         return id;
     }
@@ -38,5 +47,12 @@ public class User {
     public int getWeight() {
         return weight;
     }
+    public int getHeight() {
+        return height;
+    }
+    public double getActivity() {
+        return activity;
+    }
+
 
 }

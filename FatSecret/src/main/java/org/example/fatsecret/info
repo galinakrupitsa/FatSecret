@@ -1,9 +1,11 @@
-curl --location 'http://localhost:8080/api/v1/user/4' \
+curl --location 'http://localhost:8080/api/v1/user/7' \
 --header 'Content-Type: application/json' \
 --data '{
-        "username": "Ann",
-        "age": 12,
-        "weight": 39
+        "username": "John",
+        "age": 30,
+        "weight": 76,
+        "height" : 170,
+        "activity" : 1.2
       }'
 
 
@@ -18,3 +20,15 @@ curl --location 'http://localhost:8080/api/v1/user/4' \
               "height" : 160,
               "activity" : 1.2
             }'
+
+            http://localhost:8080/api/v1/calculator/increment
+
+            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/7' \
+                  --header 'Content-Type: application/json' \
+                  --data '{
+                          "username": "Max",
+                          "age": 14,
+                          "weight": 59,
+                          "height" : 160,
+                          "activity" : 1.2
+                        }'
