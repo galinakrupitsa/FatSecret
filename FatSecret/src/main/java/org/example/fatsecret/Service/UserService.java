@@ -11,6 +11,7 @@ public class UserService {
     public UserService(FatRepository repo) {
         this.repo = repo;
     }
+
     public User createUser(User user) {
         return repo.save(user);
     }
@@ -20,7 +21,6 @@ public class UserService {
         if (user == null) {
             throw new RuntimeException("User with id " + id + " not found");
         }
-
         return user;
     }
 }

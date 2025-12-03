@@ -8,16 +8,12 @@ import org.springframework.stereotype.Service;
 public class KkalService {
 
     private final UserService userService;
-    int d;
-    int b =0;
 
     public KkalService(UserService userService) {
         this.userService = userService;
     }
 
-
     public DailyRecomendation calculate(int age, int weight, int height, Double activity){
-
          double kkal = (10 * weight + 6.25 * height - 5 * age -160) * activity;
          return new DailyRecomendation(kkal);
     }
@@ -28,13 +24,7 @@ public class KkalService {
         return new DailyRecomendation(kkal);
     }
 
-    public void incrementb() {
 
-        for (int i = 0; i < 5; i++) {
-            b++;
-        }
-        System.out.println(b);
-    }
 
 }
 
