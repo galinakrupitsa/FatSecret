@@ -4,14 +4,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Data
 public class MonthRecomendation {
-    private Double[] monthlyCallary;
-
-    public MonthRecomendation(int monthCount) {
-        monthlyCallary = new Double[monthCount];
-    }
-
+    private List<Double> monthlyCallory = new ArrayList<>();
 }

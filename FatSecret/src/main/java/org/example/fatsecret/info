@@ -23,16 +23,16 @@ curl --location 'http://localhost:8080/api/v1/user/7' \
 
             http://localhost:8080/api/v1/calculator/increment
 
-            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/7' \
+            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/8' \
                   --header 'Content-Type: application/json' \
                   --data '{
-                          "username": "Max",
-                          "age": 14,
-                          "weight": 59,
-                          "height" : 160,
+                          "username": "Maria",
+                          "age": 24,
+                          "weight": 58,
+                          "height" : 165,
                           "activity" : 1.2
                         }'
-      curl --location 'http://localhost:8080/api/v1/calculator/callarycalendar/7' \
+      curl --location 'http://localhost:8080/api/v1/calculator/month/7' \
             --header 'Content-Type: application/json' \
             --data '{
                     "month_count" : 4,

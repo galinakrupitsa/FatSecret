@@ -12,5 +12,7 @@ public class DTO {
     private int weight;
     private int height;
     private double activity;
+    private int month;
+    private int desiredweight;
 
 }

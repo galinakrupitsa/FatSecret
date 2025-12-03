@@ -3,6 +3,7 @@ package org.example.fatsecret.Controllers;
 import org.example.fatsecret.DTO;
 import org.example.fatsecret.DailyRecomendation;
 import org.example.fatsecret.Entity.User;
+import org.example.fatsecret.MonthRecomendation;
 import org.example.fatsecret.Service.KkalService;
 import org.example.fatsecret.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class KkalController {
 
     @PostMapping ("/dayllycallory")
     public DailyRecomendation kkalCalculate (@RequestBody DTO dto){
-         return  kkalService.calculate( dto.getAge(), dto.getHeight(), dto.getWeight(), dto.getActivity());
+         return  kkalService.calculate(dto);
 }
 
     @GetMapping ("/members/dayllycallory/{id}")
@@ -29,6 +30,9 @@ public class KkalController {
         return  kkalService.calculateMembers(id);
     }
 
-    @PostMapping ("/monthlycallary")
-    public
+    @PostMapping ("/month/{id}")
+    public MonthRecomendation kkalCalculateMonth (@PathVariable Long id,
+                                                  @RequestBody DTO dto){
+        return kkalService.calculateCalendary(id, dto);
+    }
 }
