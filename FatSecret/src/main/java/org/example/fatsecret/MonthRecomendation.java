@@ -1,15 +1,14 @@
 package org.example.fatsecret;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @Data
+@AllArgsConstructor
 public class MonthRecomendation {
-    private List<Double> monthlyCallory = new ArrayList<>();
+    private List<Double> monthlyCallory;
+
 }

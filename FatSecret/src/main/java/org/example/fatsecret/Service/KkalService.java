@@ -6,6 +6,9 @@ import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.MonthRecomendation;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class KkalService {
 
@@ -31,12 +34,15 @@ public class KkalService {
     }
     public MonthRecomendation calculateCalendary (Long id, DTO dto){
         User user = userService.getUserById(id);
+        List<Double> monthlyCallory = new ArrayList<>();
         Double current = calculateImplementation(user.getAge(), user.getWeight(), user.getHeight(), user.getActivity());
         for (int i = 0; i < dto.getMonth(); i++){
+            monthlyCallory.add(current);
             current*=0.9;
         }
 
-        return new MonthRecomendation();
+
+        return new MonthRecomendation(monthlyCallory);
     }
 
 
