@@ -1,6 +1,7 @@
 package org.example.fatsecret.Service;
 
-import org.example.fatsecret.DTO;
+import org.example.fatsecret.DTO.DT0month;
+import org.example.fatsecret.DTO.DTO;
 import org.example.fatsecret.DailyRecomendation;
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.MonthRecomendation;
@@ -44,7 +45,7 @@ public class KkalService {
         return new MonthRecomendation(monthlyCallory);
     }
 
-    public MonthRecomendation calculateCalendaryGoal (Long id, DTO dto){
+    public MonthRecomendation calculateCalendaryGoal (Long id, DT0month dto){
         User user = userService.getUserById(id);
         List<Double> monthlyCallory = new ArrayList<>();
         Double current = calculateImplementation(user.getAge(), user.getWeight(), user.getHeight(), user.getActivity());

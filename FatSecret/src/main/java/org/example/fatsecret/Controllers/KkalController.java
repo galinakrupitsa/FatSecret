@@ -1,13 +1,11 @@
 package org.example.fatsecret.Controllers;
 
-import org.example.fatsecret.DTO;
+import org.example.fatsecret.DTO.DT0month;
+import org.example.fatsecret.DTO.DTO;
 import org.example.fatsecret.DailyRecomendation;
-import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.MonthRecomendation;
 import org.example.fatsecret.Service.KkalService;
-import org.example.fatsecret.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,7 +36,7 @@ public class KkalController {
 
     @PostMapping ("/month/goal/{id}")
     public MonthRecomendation kkalCalculateGoal (@PathVariable Long id,
-                                                  @RequestBody DTO dto){
+                                                  @RequestBody DT0month dto){
         return kkalService.calculateCalendaryGoal(id, dto);
     }
 

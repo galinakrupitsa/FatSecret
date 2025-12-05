@@ -1,4 +1,4 @@
-package org.example.fatsecret;
+package org.example.fatsecret.DTO;
 
 import lombok.Data;
 
