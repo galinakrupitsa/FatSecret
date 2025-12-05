@@ -1,17 +1,17 @@
-curl --location 'http://localhost:8080/api/v1/user/7' \
+curl --location 'http://localhost:8080/api/v1/user/8' \ - создание строки в таблице
 --header 'Content-Type: application/json' \
 --data '{
         "username": "John",
-        "age": 30,
+        "age": 24,
         "weight": 76,
-        "height" : 170,
-        "activity" : 1.2
+        "height" : 180,
+        "activity" : 1.7
       }'
 
 
       curl --location 'http://localhost:8080/api/v1/user/1'
 
-     curl --location 'http://localhost:8080/api/v1/calculator/dayllycallory' \
+     curl --location 'http://localhost:8080/api/v1/calculator/dayllycallory' \ - расчет ккал поддержки
       --header 'Content-Type: application/json' \
       --data '{
               "username": "Max",
@@ -23,7 +23,7 @@ curl --location 'http://localhost:8080/api/v1/user/7' \
 
             http://localhost:8080/api/v1/calculator/increment
 
-            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/8' \
+            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/8' \ - расчет ккал поддержки для зарегистрированных
                   --header 'Content-Type: application/json' \
                   --data '{
                           "username": "Maria",
@@ -32,9 +32,16 @@ curl --location 'http://localhost:8080/api/v1/user/7' \
                           "height" : 165,
                           "activity" : 1.2
                         }'
-      curl --location 'http://localhost:8080/api/v1/calculator/month/7' \
+      curl --location 'http://localhost:8080/api/v1/calculator/month/8' \  - рассчет ккал похудения по месяцам
             --header 'Content-Type: application/json' \
             --data '{
-                    "month" : 4,
+                    "month" : 12,
                     "desiredweight" : 50
                   }'
+
+      curl --location 'http://localhost:8080/api/v1/calculator/month/goal/8' \  - рассчет ккал поддержка, похудение, набор
+                  --header 'Content-Type: application/json' \
+                  --data '{
+                          "desiredweight" : 90,
+                          "month" : 4
+                        }'

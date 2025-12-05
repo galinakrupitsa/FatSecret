@@ -35,4 +35,11 @@ public class KkalController {
                                                   @RequestBody DTO dto){
         return kkalService.calculateCalendary(id, dto);
     }
+
+    @PostMapping ("/month/goal/{id}")
+    public MonthRecomendation kkalCalculateGoal (@PathVariable Long id,
+                                                  @RequestBody DTO dto){
+        return kkalService.calculateCalendaryGoal(id, dto);
+    }
+
 }
