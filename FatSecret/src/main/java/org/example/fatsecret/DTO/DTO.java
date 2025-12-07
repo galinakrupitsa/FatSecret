@@ -1,6 +1,7 @@
 package org.example.fatsecret.DTO;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @lombok.Getter
 @lombok.Setter
@@ -10,7 +11,8 @@ public class DTO {
     private String username;
     private int age;
     private int weight;
-    private int height;
+    @NonNull
+    private Integer height;
     private double activity;
     private int month;
     private int desiredweight;

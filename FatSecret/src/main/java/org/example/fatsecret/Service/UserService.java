@@ -1,5 +1,6 @@
 package org.example.fatsecret.Service;
 
+import org.example.fatsecret.Exceptions.UserNotFoundException;
 import org.example.fatsecret.Repositories.FatRepository;
 import org.example.fatsecret.Entity.User;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,16 @@ public class UserService {
         return repo.save(user);
     }
 
-    public User getUserById(Long id) {
-        User user = repo.findById(id).orElse(null);
-        if (user == null) {
-            throw new RuntimeException("User with id " + id + " not found");
+//    public User getUserById(Long id) {
+//        User user = repo.findById(id).orElse(null);
+//        if (user == null) {
+//            throw new RuntimeException("User with id " + id + " not found");
+//        }
+//        return user;
+
+        public User getUserById(Long id) {
+            return repo.findById(id)
+                    .orElseThrow(() -> new UserNotFoundException(id));
         }
-        return user;
-    }
+
 }
