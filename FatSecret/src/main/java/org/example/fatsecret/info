@@ -1,7 +1,7 @@
-curl --location 'http://localhost:8080/api/v1/user/8' \ - создание строки в таблице
+curl --location 'http://localhost:8080/api/v1/user/10' \ - создание строки в таблице
 --header 'Content-Type: application/json' \
 --data '{
-        "username": "John",
+        "username": "Tony",
         "age": 24,
         "weight": 76,
         "height" : 180,

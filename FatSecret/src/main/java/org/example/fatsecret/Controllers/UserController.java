@@ -1,5 +1,6 @@
 package org.example.fatsecret.Controllers;
 
+import org.example.fatsecret.Exceptions.NameEmptyException;
 import org.example.fatsecret.Service.UserService;
 import org.example.fatsecret.Entity.User;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,10 @@ public class UserController {
 
     @PostMapping("/{id}")
     public User create(@RequestBody User body) {
-        return service.createUser(body);
+        if (body.getUsername().isEmpty()) {
+            throw new NameEmptyException();
+        }
+            return service.createUser(body);
     }
 
     @GetMapping("/{id}")

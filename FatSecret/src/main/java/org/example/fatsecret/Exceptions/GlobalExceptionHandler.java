@@ -10,4 +10,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+    @ExceptionHandler(NameEmptyException.class)
+    public ResponseEntity<String> handleNameEmpty(NameEmptyException e) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(e.getMessage());
+    }
 }
