@@ -37,17 +37,21 @@ public class KkalService {
     public MonthRecomendation calculateCalendary (Long id, DTO dto){
         User user = userService.getUserById(id);
         List<Double> monthlyCallory = new ArrayList<>();
+        Double total = 0.0;
         Double current = calculateImplementation(user.getAge(), user.getWeight(), user.getHeight(), user.getActivity());
         for (int i = 0; i < dto.getMonth(); i++){
             monthlyCallory.add(current);
+            total = total + 30 * (current);
             current*=0.9;
+
         }
-        return new MonthRecomendation(monthlyCallory);
+        return new MonthRecomendation(monthlyCallory, total);
     }
 
     public MonthRecomendation calculateCalendaryGoal (Long id, DT0month dto){
         User user = userService.getUserById(id);
         List<Double> monthlyCallory = new ArrayList<>();
+        Double total =0.0;
         Double current = calculateImplementation(user.getAge(), user.getWeight(), user.getHeight(), user.getActivity());
         for (int i = 0; i < dto.getMonth(); i++){
             monthlyCallory.add(current);
@@ -59,8 +63,10 @@ public class KkalService {
                 } else  {
                     current*=1;
                 }
+
         }
-        return new MonthRecomendation(monthlyCallory);
+
+        return new MonthRecomendation(monthlyCallory, total );
     }
 
 }

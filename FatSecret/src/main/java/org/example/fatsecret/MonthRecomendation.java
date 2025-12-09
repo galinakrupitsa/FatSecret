@@ -10,5 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 public class MonthRecomendation {
     private List<Double> monthlyCallory;
+    private Double total;
 
 }
