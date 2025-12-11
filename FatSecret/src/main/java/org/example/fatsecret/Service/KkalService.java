@@ -69,5 +69,9 @@ public class KkalService {
         return new MonthRecomendation(monthlyCallory, total );
     }
 
+    public Double calculateMembersIMT(Long id){
+        User user = userService.getUserById(id);
+        return user.getWeight()/Math.pow(user.getActivity(),2);
+    }
 }
 

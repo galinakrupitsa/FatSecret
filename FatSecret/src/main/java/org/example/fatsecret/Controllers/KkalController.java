@@ -40,4 +40,9 @@ public class KkalController {
         return kkalService.calculateCalendaryGoal(id, dto);
     }
 
+    @GetMapping ("/members/imt/{id}")
+    public Double ImtCalculateMembers (@PathVariable Long id){
+        return  kkalService.calculateMembersIMT(id);
+    }
+
 }

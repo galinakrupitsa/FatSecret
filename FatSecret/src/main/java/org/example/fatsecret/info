@@ -1,10 +1,11 @@
-curl --location 'http://localhost:8080/api/v1/user/10' \ - создание строки в таблице
+- создание строки в таблице
+curl --location 'http://localhost:8080/api/v1/user/5' \
 --header 'Content-Type: application/json' \
 --data '{
-        "username": "Tony",
-        "age": 24,
-        "weight": 76,
-        "height" : 180,
+        "username": "Alex",
+        "age": 30,
+        "weight": 100,
+        "height" : 190,
         "activity" : 1.7
       }'
 
@@ -23,12 +24,14 @@ curl --location 'http://localhost:8080/api/v1/user/10' \ - создание ст
 
             http://localhost:8080/api/v1/calculator/increment
 
-            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/8' \ - расчет ккал поддержки для зарегистрированных
+
+- расчет ккал поддержки для зарегистрированных
+            curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/' \
                   --header 'Content-Type: application/json' \
                   --data '{
-                          "username": "Maria",
-                          "age": 24,
-                          "weight": 58,
+                          "username": "Max",
+                          "age": 28,
+                          "weight": 59,
                           "height" : 165,
                           "activity" : 1.2
                         }'
@@ -48,3 +51,14 @@ curl --location 'http://localhost:8080/api/v1/user/10' \ - создание ст
                           "desiredweight" : 90,
                           "month" : 4
                         }'
+
+      - расчет ИМТ для пользоателей из базы
+      curl --location 'http://localhost:8080/api/v1/calculator/members/imt/1'
+
+       -расчет ИМТ для пользоателей из запроса
+       curl --location 'http://localhost:8080/api/v1/calculator/members/dayllycallory/' \
+                         --header 'Content-Type: application/json' \
+                         --data '{
+                                 "weight": 59,
+                                 "height" : 165,
+                               }'
