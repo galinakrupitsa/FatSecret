@@ -21,7 +21,7 @@ public class KkalController {
     @PostMapping ("/dayllycallory")
     public DailyRecomendation kkalCalculate (@RequestBody DTO dto){
          return  kkalService.calculate(dto);
-}
+    }
 
     @GetMapping ("/members/dayllycallory/{id}")
     public DailyRecomendation kkalCalculateMembers (@PathVariable Long id){
@@ -45,4 +45,8 @@ public class KkalController {
         return  kkalService.calculateMembersIMT(id);
     }
 
+    @PostMapping ("/imt")
+    public Double ImtCalculate (@RequestBody DTO dto){
+        return  kkalService.calculateIMT(dto);
+    }
 }

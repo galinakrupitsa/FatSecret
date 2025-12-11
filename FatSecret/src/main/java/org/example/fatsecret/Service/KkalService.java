@@ -43,7 +43,6 @@ public class KkalService {
             monthlyCallory.add(current);
             total = total + 30 * (current);
             current*=0.9;
-
         }
         return new MonthRecomendation(monthlyCallory, total);
     }
@@ -63,15 +62,21 @@ public class KkalService {
                 } else  {
                     current*=1;
                 }
-
         }
-
         return new MonthRecomendation(monthlyCallory, total );
     }
 
+    public Double calculateIMTImplementation (Integer weight, Integer height){
+        height = height/100;
+        return (weight/Math.pow((height),2));
+    }
     public Double calculateMembersIMT(Long id){
         User user = userService.getUserById(id);
-        return user.getWeight()/Math.pow(user.getActivity(),2);
+        return calculateIMTImplementation(user.getWeight(), user.getHeight());
     }
+    public Double calculateIMT (DTO dto){
+        return calculateIMTImplementation(dto.getWeight(), dto.getHeight());
+    }
+
 }
 
