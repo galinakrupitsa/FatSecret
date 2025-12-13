@@ -29,7 +29,11 @@ public class UserService {
             }
     public List<WeightedUsers> findByWeight(Integer weight) {
         return repo.findByWeightGreaterThan(weight);
-    }
         }
+
+    public List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc(){
+        return repo.findByWeightGreaterThanOrderByWeightDesc(90);
+    }
+}
 
 

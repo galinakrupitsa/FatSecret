@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FatRepository extends JpaRepository<User, Long> {
     List<WeightedUsers> findByWeightGreaterThan(Integer weight);
+    List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc(Integer weight);
 }

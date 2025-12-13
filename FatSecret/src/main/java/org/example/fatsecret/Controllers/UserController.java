@@ -35,4 +35,8 @@ public class UserController {
     public List<WeightedUsers> getUsersByExactWeight(@PathVariable Integer weight) {
         return service.findByWeight(weight);
     }
+    @GetMapping("/weight/sorted")
+    public List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc(){
+        return service.findByWeightGreaterThanOrderByWeightDesc();
+    }
 }
