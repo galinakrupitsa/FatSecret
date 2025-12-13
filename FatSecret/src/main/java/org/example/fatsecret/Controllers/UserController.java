@@ -1,9 +1,13 @@
 package org.example.fatsecret.Controllers;
 
 import org.example.fatsecret.Exceptions.NameEmptyException;
+import org.example.fatsecret.ListWeight;
 import org.example.fatsecret.Service.UserService;
 import org.example.fatsecret.Entity.User;
+import org.example.fatsecret.WeightedUsers;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/user")
@@ -25,6 +29,10 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return service.getUserById(id);
+    }
 
+    @GetMapping("/weight/{weight}")
+    public List<WeightedUsers> getUsersByExactWeight(@PathVariable Integer weight) {
+        return service.findByWeight(weight);
     }
 }

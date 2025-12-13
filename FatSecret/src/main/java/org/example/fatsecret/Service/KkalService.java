@@ -19,7 +19,7 @@ public class KkalService {
         this.userService = userService;
     }
 
-    private Double calculateImplementation(int age, int weight, int height, Double activity){
+    private Double calculateImplementation(int age, int weight, Double height, Double activity){
         return (10 * weight + 6.25 * height - 5 * age -160) * activity;
     }
 
@@ -66,7 +66,7 @@ public class KkalService {
         return new MonthRecomendation(monthlyCallory, total );
     }
 
-    public Double calculateIMTImplementation (Integer weight, Integer height){
+    public Double calculateIMTImplementation (Integer weight, Double height){
         height = height/100;
         return (weight/Math.pow((height),2));
     }

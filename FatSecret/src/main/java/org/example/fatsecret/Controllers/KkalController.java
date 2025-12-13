@@ -3,10 +3,13 @@ package org.example.fatsecret.Controllers;
 import org.example.fatsecret.DTO.DT0month;
 import org.example.fatsecret.DTO.DTO;
 import org.example.fatsecret.DailyRecomendation;
+import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.MonthRecomendation;
 import org.example.fatsecret.Service.KkalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/calculator")
@@ -49,4 +52,6 @@ public class KkalController {
     public Double ImtCalculate (@RequestBody DTO dto){
         return  kkalService.calculateIMT(dto);
     }
+
+
 }

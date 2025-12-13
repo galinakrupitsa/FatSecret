@@ -12,7 +12,7 @@ public class DTO {
     private Integer age;
     private Integer weight;
 //    @NonNull
-    private Integer height;
+    private Double height;
     private double activity;
     private Integer month;
     private Integer desiredweight;

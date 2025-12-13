@@ -16,7 +16,7 @@ public class User {
     private Integer age;
     private Integer weight;
     @Column(nullable = true)
-    private Integer height;
+    private Double height;
     @Column(nullable = true)
     private Double activity;
 
@@ -37,7 +37,7 @@ public class User {
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
-    public void setHeight(Integer height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
     public void setActivity(Double activity) {
@@ -55,7 +55,7 @@ public class User {
     public Integer getWeight() {
         return weight;
     }
-    public Integer getHeight() {
+    public Double getHeight() {
         return height;
     }
     public Double getActivity() {
