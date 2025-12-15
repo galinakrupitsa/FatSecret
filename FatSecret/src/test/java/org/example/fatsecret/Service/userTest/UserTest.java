@@ -2,6 +2,7 @@ package org.example.fatsecret.Service.userTest;
 
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.Repositories.FatRepository;
+import org.example.fatsecret.Service.KkalService;
 import org.example.fatsecret.Service.UserService;
 import org.example.fatsecret.WeightedUsers;
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,18 @@ public class UserTest {
         assertEquals(0, result.size());
         Mockito.verify(repo).findByWeightGreaterThan(70);
     }
+    private final KkalService serv = new KkalService(null);
+    @Test
+    public void calculateIMTImplementationTest(){
 
+        Integer weight = 70;     // кг
+        Double height = 170.0;   // см
+
+        // when
+        Double result = serv.calculateIMTImplementation(weight, height);
+
+        // then
+        assertEquals(24.22, result, 0.01);
+
+    }
 }
