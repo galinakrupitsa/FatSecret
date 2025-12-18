@@ -1,5 +1,7 @@
 package org.example.fatsecret.Controllers;
 
+import org.example.fatsecret.DTO.KkalEntryDTO;
+import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.NameEmptyException;
 import org.example.fatsecret.ListWeight;
 import org.example.fatsecret.Service.UserService;
@@ -38,5 +40,10 @@ public class UserController {
     @GetMapping("/weight/sorted")
     public List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc(){
         return service.findByWeightGreaterThanOrderByWeightDesc();
+    }
+
+    @PostMapping("/dairy/{id}")
+    public UsersKkal createDairy(@PathVariable Long id, @RequestBody KkalEntryDTO dto) {
+        return service.addKkal(id, dto);
     }
 }
