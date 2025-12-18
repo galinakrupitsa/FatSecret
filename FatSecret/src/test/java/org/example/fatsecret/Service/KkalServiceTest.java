@@ -1,38 +1,23 @@
 package org.example.fatsecret.Service;
 
-import org.example.fatsecret.DTO.DTO;
-import org.example.fatsecret.DailyRecomendation;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-@ExtendWith(MockitoExtension.class)
+
 class KkalServiceTest {
-
     @Mock
-    UserService userService; // 🔹 МОК
-
+    UserService userService;
     @InjectMocks
-    KkalService kkalService; // 🔹 сюда автоматически подставится mock UserService
-
+    KkalService service = new KkalService(userService);
     @Test
-    void calculateTest() {
-
-        DTO dto = new DTO();
-        dto.setAge(25);
-        dto.setWeight(70);
-        dto.setHeight(175.0);
-        dto.setActivity(1.2);
-
-        DailyRecomendation result = kkalService.calculate(dto);
-// then
+    void calculateIMTImplementationTest() {
+        Integer weight = 75;
+        Double height = 180.0;
+        Double result = service.calculateIMTImplementation(weight, height);
         assertNotNull(result);
-        assertEquals(1810.5, result.getKkal(), 0.01);
+        assertEquals(23.14, result, 0.01);
+
     }
 }
