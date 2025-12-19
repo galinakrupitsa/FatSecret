@@ -1,6 +1,7 @@
 package org.example.fatsecret.Controllers;
 
 import org.example.fatsecret.DTO.KkalEntryDTO;
+import org.example.fatsecret.Dairy;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.NameEmptyException;
 import org.example.fatsecret.ListWeight;
@@ -9,6 +10,7 @@ import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.WeightedUsers;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -45,5 +47,14 @@ public class UserController {
     @PostMapping("/dairy/{id}")
     public UsersKkal createDairy(@PathVariable Long id, @RequestBody KkalEntryDTO dto) {
         return service.addKkal(id, dto);
+    }
+
+    @GetMapping("/diary/user/{userId}")
+    public Dairy getDiary(
+            @PathVariable Long userId,
+            @RequestParam LocalDateTime since,
+            @RequestParam LocalDateTime until)
+     {
+        return service.getDiaryInterval(userId, since, until);
     }
 }
