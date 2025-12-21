@@ -1,10 +1,9 @@
 package org.example.fatsecret.Controllers;
 
-import org.example.fatsecret.DTO.KkalEntryDTO;
+import org.example.fatsecret.DTO.DTODairyRecord;
 import org.example.fatsecret.Dairy;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.NameEmptyException;
-import org.example.fatsecret.ListWeight;
 import org.example.fatsecret.Service.UserService;
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.WeightedUsers;
@@ -45,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/dairy/{id}")
-    public UsersKkal createDairy(@PathVariable Long id, @RequestBody KkalEntryDTO dto) {
+    public UsersKkal createDairy(@PathVariable Long id, @RequestBody DTODairyRecord dto) {
         return service.addKkal(id, dto);
     }
 

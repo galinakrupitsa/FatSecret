@@ -1,10 +1,9 @@
 package org.example.fatsecret.Service;
 
-import org.example.fatsecret.DTO.KkalEntryDTO;
+import org.example.fatsecret.DTO.DTODairyRecord;
 import org.example.fatsecret.Dairy;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.UserNotFoundException;
-import org.example.fatsecret.ListWeight;
 import org.example.fatsecret.Repositories.FatRepository;
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.Repositories.KkalEntryRepository;
@@ -12,6 +11,7 @@ import org.example.fatsecret.WeightedUsers;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,7 +41,7 @@ public class UserService {
         return repo.findByWeightGreaterThanOrderByWeightDesc(90);
     }
 
-    public UsersKkal addKkal(Long userId, KkalEntryDTO dto) {
+    public UsersKkal addKkal(Long userId, DTODairyRecord dto) {
         User user = getUserById(userId);
 
         UsersKkal usersKkal = new UsersKkal();
@@ -52,18 +52,17 @@ public class UserService {
         return kkalRepo.save(usersKkal);
     }
 
-    public UsersKkal getDiaryById(Long id) {
-        return kkalRepo.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-    }
-
     public Dairy getDiaryInterval(Long userId,
                                   LocalDateTime since,
                                   LocalDateTime until) {
-        UsersKkal usersKkal = getDiaryById(userId);
-        usersKkal.setDt(since);
-        usersKkal.setDt(until);
+        List<UsersKkal> dairyRecords =
+                kkalRepo.findAllByUserIdAndDtBetween(userId, since, until);
+        List<DTODairyRecord> records = new ArrayList<>();
+        for (UsersKkal usersKkal : dairyRecords) {
+            records.add(new DTODairyRecord(usersKkal.getKkal(), usersKkal.getDt()));
+        }
 
-
+        return new Dairy(records);
     }
 }
 
