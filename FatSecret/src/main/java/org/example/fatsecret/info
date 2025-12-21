@@ -75,4 +75,4 @@ curl --location 'http://localhost:8080/api/v1/user/dairy/9' \
                                  }'
    Сумма калорийности за определенный период
 ?from=<startdate>&to=<enddate>
-curl --location 'https://localhost:8080/api/v1/user/dairy/9?since=2023-10-25T14:30:15&until=2023-10-26T14:30:15
+curl --location 'http://localhost:8080/api/v1/user/diary/user/9?since=2025-12-12T00:30:15&until=2025-12-17T00:30:15
