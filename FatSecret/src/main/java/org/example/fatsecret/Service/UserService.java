@@ -10,9 +10,12 @@ import org.example.fatsecret.Repositories.KkalEntryRepository;
 import org.example.fatsecret.WeightedUsers;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -62,6 +65,37 @@ public class UserService {
             records.add(new DTODairyRecord(usersKkal.getKkal(), usersKkal.getDt()));
         }
 
+        return new Dairy(records);
+    }
+
+    public Dairy getDiaryIntervalDay(Long userId,
+                                  LocalDateTime since,
+                                  LocalDateTime until) {
+        Map<LocalDate, Double> dataMap = new HashMap<>();
+        List<UsersKkal> dairyRecords =
+                kkalRepo.findAllByUserIdAndDtBetween(userId, since, until);
+
+        for (UsersKkal usersKkal : dairyRecords) {
+            LocalDate date = usersKkal.getDt().toLocalDate();
+            Double kkal = usersKkal.getKkal();
+
+            if (dataMap.containsKey(date)) {
+                Double currentSum = dataMap.get(date);
+                dataMap.put(date, currentSum + kkal);
+            }
+            else {
+                dataMap.put(date, kkal);
+            }
+        }
+        List<DTODairyRecord> records = new ArrayList<>();
+        for (Map.Entry<LocalDate, Double> entry : dataMap.entrySet()) {
+            records.add(
+                    new DTODairyRecord(
+                            entry.getValue(), // суммарные калории за день
+                            entry.getKey().atStartOfDay()   // дата
+                    )
+            );
+        }
         return new Dairy(records);
     }
 }

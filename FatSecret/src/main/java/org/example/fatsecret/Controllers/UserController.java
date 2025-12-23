@@ -54,6 +54,6 @@ public class UserController {
             @RequestParam LocalDateTime since,
             @RequestParam LocalDateTime until)
      {
-        return service.getDiaryInterval(userId, since, until);
+        return service.getDiaryIntervalDay(userId, since, until);
     }
 }
