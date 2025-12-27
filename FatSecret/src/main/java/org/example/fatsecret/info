@@ -75,4 +75,12 @@ curl --location 'http://localhost:8080/api/v1/user/dairy/9' \
                                  }'
    Сумма калорийности за определенный период
 ?from=<startdate>&to=<enddate>
-curl --location 'http://localhost:8080/api/v1/user/diary/user/9?since=2025-12-12T00:30:15&until=2025-12-17T00:30:15
+http://localhost:8080/api/v1/user/diary/user/10?since=2025-12-12T00:30:15&until=2025-12-17T00:30:15
+
+Добавить продукт
+curl --location 'http://localhost:8080/api/v1/product/catalog' \
+         --header 'Content-Type: application/json' \
+         --data    '{
+                    "productName": "apple",
+                    "kkal": 120
+                    }'
