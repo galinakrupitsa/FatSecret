@@ -1,12 +1,14 @@
 package org.example.fatsecret.Service;
 
 import org.example.fatsecret.DTO.DTODairyRecord;
+import org.example.fatsecret.DTO.DTODiaryProducts;
 import org.example.fatsecret.Dairy;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.UserNotFoundException;
 import org.example.fatsecret.Repositories.FatRepository;
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.Repositories.KkalEntryRepository;
+import org.example.fatsecret.Repositories.ProductRepository;
 import org.example.fatsecret.WeightedUsers;
 import org.springframework.stereotype.Service;
 
@@ -21,32 +23,35 @@ import java.util.Map;
 public class UserService {
     private final FatRepository repo;
     private final KkalEntryRepository kkalRepo;
+    private final ProductRepository productRepo;
+    private final ProductService productService;
 
-    public UserService(FatRepository repo, KkalEntryRepository kkalRepo) {
+    public UserService(FatRepository repo, KkalEntryRepository kkalRepo, ProductRepository productRepo, ProductService productService) {
         this.repo = repo;
         this.kkalRepo = kkalRepo;
+        this.productRepo = productRepo;
+        this.productService = productService;
     }
 
     public User createUser(User user) {
         return repo.save(user);
     }
 
-
     public User getUserById(Long id) {
-            return repo.findById(id)
-                    .orElseThrow(() -> new UserNotFoundException(id));
-            }
+        return repo.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
     public List<WeightedUsers> findByWeight(Integer weight) {
         return repo.findByWeightGreaterThan(weight);
-        }
+    }
 
-    public List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc(){
+    public List<WeightedUsers> findByWeightGreaterThanOrderByWeightDesc() {
         return repo.findByWeightGreaterThanOrderByWeightDesc(90);
     }
 
     public UsersKkal addKkal(Long userId, DTODairyRecord dto) {
         User user = getUserById(userId);
-
         UsersKkal usersKkal = new UsersKkal();
         usersKkal.setKkal(dto.getKkal());
         usersKkal.setDt(dto.getDt());
@@ -69,8 +74,8 @@ public class UserService {
     }
 
     public Dairy getDiaryIntervalDay(Long userId,
-                                  LocalDateTime since,
-                                  LocalDateTime until) {
+                                     LocalDateTime since,
+                                     LocalDateTime until) {
         Map<LocalDate, Double> dataMap = new HashMap<>();
         List<UsersKkal> dairyRecords =
                 kkalRepo.findAllByUserIdAndDtBetween(userId, since, until);
@@ -82,8 +87,7 @@ public class UserService {
             if (dataMap.containsKey(date)) {
                 Double currentSum = dataMap.get(date);
                 dataMap.put(date, currentSum + kkal);
-            }
-            else {
+            } else {
                 dataMap.put(date, kkal);
             }
         }
@@ -98,6 +102,16 @@ public class UserService {
         }
         return new Dairy(records);
     }
+
+    public UsersKkal addDairyProduct(Long userId, DTODiaryProducts dto) {
+        UsersKkal usersKkal = new UsersKkal();
+        User user = getUserById(userId);
+        usersKkal.setKkal((productRepo.getProductsById(dto.getProductId()).getKkal())* dto.getProductWeight()/100);
+        usersKkal.setDt(dto.getDt());
+        usersKkal.setUser(user);
+        return kkalRepo.save(usersKkal);
+    }
 }
+
 
 

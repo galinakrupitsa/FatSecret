@@ -1,6 +1,7 @@
 package org.example.fatsecret.Controllers;
 
 import org.example.fatsecret.DTO.DTODairyRecord;
+import org.example.fatsecret.DTO.DTODiaryProducts;
 import org.example.fatsecret.Dairy;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.NameEmptyException;
@@ -55,5 +56,11 @@ public class UserController {
             @RequestParam LocalDateTime until)
      {
         return service.getDiaryIntervalDay(userId, since, until);
+    }
+
+    @PostMapping("/{id}/dairy")
+    public UsersKkal addDairy(@PathVariable Long id, @RequestBody DTODiaryProducts dto) {
+        return service.addDairyProduct(id, dto);
+
     }
 }
