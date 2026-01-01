@@ -97,7 +97,7 @@ public class KkalService {
         for (UsersKkal usersKkal : d) {
              total += usersKkal.getKkal();
         }
-        dayCalloryReport.dayCurrent = total;
+        dayCalloryReport.setDayCurrent(total); 
 
         dayCalloryReport.dayTotal = dayCalloryReport.getDayRecomendation()-dayCalloryReport.dayCurrent;
         return dayCalloryReport;
