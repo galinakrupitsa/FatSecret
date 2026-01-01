@@ -3,6 +3,7 @@ package org.example.fatsecret.Controllers;
 import org.example.fatsecret.DTO.DT0month;
 import org.example.fatsecret.DTO.DTO;
 import org.example.fatsecret.DailyRecomendation;
+import org.example.fatsecret.DayCalloryReport;
 import org.example.fatsecret.Entity.User;
 import org.example.fatsecret.MonthRecomendation;
 import org.example.fatsecret.Service.KkalService;
@@ -53,5 +54,9 @@ public class KkalController {
         return  kkalService.calculateIMT(dto);
     }
 
+    @GetMapping("diary/total/user/{userId}")
+    public DayCalloryReport dayTotal(@PathVariable Long userId) {
+        return kkalService.getDayTotal(userId);
+    }
 
 }

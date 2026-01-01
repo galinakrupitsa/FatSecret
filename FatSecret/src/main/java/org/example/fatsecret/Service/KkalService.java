@@ -3,10 +3,15 @@ package org.example.fatsecret.Service;
 import org.example.fatsecret.DTO.DT0month;
 import org.example.fatsecret.DTO.DTO;
 import org.example.fatsecret.DailyRecomendation;
+import org.example.fatsecret.DayCalloryReport;
 import org.example.fatsecret.Entity.User;
+import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.MonthRecomendation;
+import org.example.fatsecret.Repositories.KkalEntryRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +19,11 @@ import java.util.List;
 public class KkalService {
 
     private final UserService userService;
+    private final KkalEntryRepository kkalRepo;
 
-    public KkalService(UserService userService) {
+    public KkalService(UserService userService, KkalEntryRepository kkalRepo) {
         this.userService = userService;
+        this.kkalRepo = kkalRepo;
     }
 
     private Double calculateImplementation(int age, int weight, Double height, Double activity){
@@ -77,6 +84,24 @@ public class KkalService {
     public Double calculateIMT (DTO dto){
         return calculateIMTImplementation(dto.getWeight(), dto.getHeight());
     }
+    public DayCalloryReport getDayTotal(Long userId){
+        LocalDate today = LocalDate.now();
+        LocalDateTime start = today.atStartOfDay();
+        LocalDateTime end = today.plusDays(1).atStartOfDay();
 
+        DayCalloryReport dayCalloryReport = new DayCalloryReport();
+
+        dayCalloryReport.setDayRecomendation(calculateMembers(userId).getKkal());
+        List<UsersKkal> d = kkalRepo.findAllByUserIdAndDtBetween(userId, start, end);
+        double total = 0.0;
+        for (UsersKkal usersKkal : d) {
+             total += usersKkal.getKkal();
+        }
+        dayCalloryReport.dayCurrent = total;
+
+        dayCalloryReport.dayTotal = dayCalloryReport.getDayRecomendation()-dayCalloryReport.dayCurrent;
+        return dayCalloryReport;
+
+    }
 }
 

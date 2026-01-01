@@ -3,6 +3,8 @@ package org.example.fatsecret.Service;
 import org.example.fatsecret.DTO.DTODairyRecord;
 import org.example.fatsecret.DTO.DTODiaryProducts;
 import org.example.fatsecret.Dairy;
+import org.example.fatsecret.DayCalloryReport;
+import org.example.fatsecret.Entity.Product;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.UserNotFoundException;
 import org.example.fatsecret.Repositories.FatRepository;
@@ -24,13 +26,13 @@ public class UserService {
     private final FatRepository repo;
     private final KkalEntryRepository kkalRepo;
     private final ProductRepository productRepo;
-    private final ProductService productService;
+
 
     public UserService(FatRepository repo, KkalEntryRepository kkalRepo, ProductRepository productRepo, ProductService productService) {
         this.repo = repo;
         this.kkalRepo = kkalRepo;
         this.productRepo = productRepo;
-        this.productService = productService;
+
     }
 
     public User createUser(User user) {
@@ -111,6 +113,8 @@ public class UserService {
         usersKkal.setUser(user);
         return kkalRepo.save(usersKkal);
     }
+
+
 }
 
 

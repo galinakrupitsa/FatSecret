@@ -3,6 +3,7 @@ package org.example.fatsecret.Controllers;
 import org.example.fatsecret.DTO.DTODairyRecord;
 import org.example.fatsecret.DTO.DTODiaryProducts;
 import org.example.fatsecret.Dairy;
+import org.example.fatsecret.DayCalloryReport;
 import org.example.fatsecret.Entity.UsersKkal;
 import org.example.fatsecret.Exceptions.NameEmptyException;
 import org.example.fatsecret.Service.UserService;
@@ -61,6 +62,6 @@ public class UserController {
     @PostMapping("/{id}/dairy")
     public UsersKkal addDairy(@PathVariable Long id, @RequestBody DTODiaryProducts dto) {
         return service.addDairyProduct(id, dto);
-
     }
+
 }
