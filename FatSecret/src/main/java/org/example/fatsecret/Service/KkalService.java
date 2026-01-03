@@ -2,6 +2,7 @@ package org.example.fatsecret.Service;
 
 import org.example.fatsecret.DTO.DT0month;
 import org.example.fatsecret.DTO.DTO;
+import org.example.fatsecret.DTO.DTODairyRecord;
 import org.example.fatsecret.DailyRecomendation;
 import org.example.fatsecret.DayCalloryReport;
 import org.example.fatsecret.Entity.User;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,11 +99,29 @@ public class KkalService {
         for (UsersKkal usersKkal : d) {
              total += usersKkal.getKkal();
         }
-        dayCalloryReport.setDayCurrent(total); 
+        dayCalloryReport.setDayCurrent(total);
 
         dayCalloryReport.dayTotal = dayCalloryReport.getDayRecomendation()-dayCalloryReport.dayCurrent;
         return dayCalloryReport;
 
+    }
+
+    public double getOvereating(Long userId, LocalDateTime since, LocalDateTime until){
+        long days = ChronoUnit.DAYS.between(
+                since.toLocalDate(),
+                until.toLocalDate()
+        );
+
+        double recom = (calculateMembers(userId).getKkal())*days;
+
+        List<DTODairyRecord> d  = userService.getDiaryInterval(userId, since, until).getRecords();
+        double totalFact = 0.0;
+        for (DTODairyRecord record : d) {
+            totalFact += record.getKkal();
+        }
+
+        double overeating = recom - totalFact;
+        return overeating;
     }
 }
 

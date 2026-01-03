@@ -10,6 +10,7 @@ import org.example.fatsecret.Service.KkalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -57,6 +58,13 @@ public class KkalController {
     @GetMapping("diary/total/user/{userId}")
     public DayCalloryReport dayTotal(@PathVariable Long userId) {
         return kkalService.getDayTotal(userId);
+    }
+
+    @GetMapping("/overeating/user/{userId}")
+    public Double dayOvereating(@PathVariable Long userId,
+                                @RequestParam LocalDateTime since,
+                                @RequestParam LocalDateTime until) {
+        return kkalService.getOvereating(userId, since, until);
     }
 
 }
